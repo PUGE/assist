@@ -69,9 +69,11 @@ window.onload = function() {
   // alert("页面加载完成！"); 
   // 获取是否有脚本
   getSchemeData.then((dataTemp) => {
+    const scriptBox = document.getElementsByClassName('script-box')[0]
     if (dataTemp.err !== 0) {
-      buttonItem.classList.add('no-scheme')
-      buttonItem.innerText = '此页面没有脚本'
+      scriptBox.classList.add('no-scheme')
+    } else {
+      scriptBox.classList.add('scheme')
     }
   })
 }

@@ -8,8 +8,11 @@
     <meta name="apple-mobile-web-app-title" content="CodeDay">
     <meta http-equiv="Cache-Control" content="no-siteapp">
     <style>
+      body, html {
+        margin: 0;
+      }
       button {
-        width: 180px;
+        width: 100%;
         border: none;
         height: 30px;
         background-color: #009fe9;
@@ -22,14 +25,39 @@
         font-family: "Microsoft YaHei";
         font-size: 12px;
         line-height: 26px;
-        color: #333;
+        background-color: #009fe9;
+        color: white;
+        padding: 0 10px;
+        height: 26px;
       }
-      .no-scheme {
-        background-color: #ccc;
-        box-shadow: none;
-        pointer-events: none;
+      .no-script {
+        display: none;
+      }
+      .no-scheme .loading {
+        display: none;
+      }
+      .no-scheme .no-script {
+        display: block;
       }
       .login {
+        display: none;
+      }
+      .script-box {
+        width: 200px;
+        height: 200px;
+        overflow: auto;
+        position: relative;
+      }
+      .loading, .no-script {
+        width: 160px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      .button-box {
         display: none;
       }
     </style>
@@ -39,7 +67,14 @@
       <span class="user"></span>
       <div class="login">登录</div>
     </div>
-    <button>获取方案</button>
+    <div class="script-box">
+      <img class="loading" src="./img/loading.svg">
+      <img class="no-script" src="./img/no-script.svg">
+      <div class="button-box">
+        <button>获取方案</button>
+      </div>
+    </div>
+    
     <script type="text/javascript" src="js/popup.js"></script>
   </body>
   

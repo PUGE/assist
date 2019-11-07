@@ -50,7 +50,7 @@ buttonItem.onclick = function () {
 let userInfo = localStorage.getItem('userInfo')
 if (userInfo) {
 	userInfo = JSON.parse(userInfo)
-  document.getElementsByClassName('user')[0].innerHTML = `金币:  ${userInfo.gold}`
+  // document.getElementsByClassName('user')[0].innerHTML = `金币:  ${userInfo.gold}`
   document.getElementsByClassName('login')[0].getElementsByClassName.display = 'none'
 }
 // 获取当前选项卡ID
@@ -69,6 +69,7 @@ window.onload = function() {
   // alert("页面加载完成！"); 
   // 获取是否有脚本
   getSchemeData.then((dataTemp) => {
+    console.log(dataTemp)
     const scriptBox = document.getElementsByClassName('script-box')[0]
     if (dataTemp.err !== 0) {
       scriptBox.classList.add('no-scheme')

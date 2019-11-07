@@ -28,7 +28,6 @@
         background-color: #009fe9;
         color: white;
         padding: 0 10px;
-        height: 26px;
       }
       .no-script {
         display: none;
@@ -37,6 +36,12 @@
         display: none;
       }
       .no-scheme .no-script {
+        display: block;
+      }
+      .scheme .loading {
+        display: none;
+      }
+      .scheme .button-box {
         display: block;
       }
       .login {
@@ -60,6 +65,17 @@
       .button-box {
         display: none;
       }
+      .no-script img {
+        width: 100%;
+      }
+      .no-script p {
+        line-height: 20px;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        color: #999;
+        font-size: 14px;
+      }
     </style>
   </head>
   <body>
@@ -69,7 +85,10 @@
     </div>
     <div class="script-box">
       <img class="loading" src="./img/loading.svg">
-      <img class="no-script" src="./img/no-script.svg">
+      <div class="no-script">
+        <img src="./img/no-script.svg">
+        <p>此页面没有适用脚本!</p>
+      </div>
       <div class="button-box">
         <button>获取方案</button>
       </div>

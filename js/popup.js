@@ -1,5 +1,5 @@
 const buttonItem = document.getElementsByTagName('button')[0]
-const serverUrl = 'http://127.0.0.1:8005'
+const serverUrl = 'http://154.8.196.163:8005'
 
 const getSchemeData = new Promise((resolve, reject) => {
   getCurrentTabId((tabInfo) => {

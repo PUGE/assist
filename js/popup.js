@@ -1,51 +1,20 @@
-const buttonItem = document.getElementsByTagName('button')[0]
-const serverUrl = 'http://154.8.196.163:8005'
+const serverUrl = 'https://going.run/assist'
 
 const getSchemeData = new Promise((resolve, reject) => {
   getCurrentTabId((tabInfo) => {
-    fetch(`${serverUrl}/?edition=1&url=${tabInfo.url}`).then(data => data.json()).then(dataTemp => {
+    fetch(`${serverUrl}?route=search`, {
+      method: 'POST',
+      body: JSON.stringify({
+        "edition": 2,
+        "url": tabInfo.url
+      }),
+      redirect: 'follow'
+    }).then(data => data.json()).then(dataTemp => {
       dataTemp.tabInfo = tabInfo
       resolve(dataTemp)
     })
   })
 })
-
-buttonItem.onclick = function () {
-  getSchemeData.then((dataTemp) => {
-    if (dataTemp.err === 0) {
-      // console.log(dataTemp.type)
-      switch (dataTemp.type) {
-        case 'run': {
-          chrome.notifications.create(null, {
-            type: 'basic',
-            iconUrl: 'img/48.png',
-            title: '运行方案',
-            message: '远程方案以载入并运行!'
-          })
-          // console.log(unescape(dataTemp.data))
-          chrome.tabs.executeScript(dataTemp.tabInfo.id, {code: unescape(dataTemp.data)})
-          break
-        }
-      }
-    } else if (dataTemp.err === 999) {
-      chrome.notifications.create(null, {
-        type: 'basic',
-        iconUrl: 'img/48.png',
-        title: '版本过低',
-        message: '有新版本请在弹出页面下载最新插件!'
-      })
-      // console.log(unescape(dataTemp.data))
-      chrome.tabs.create({url: dataTemp.url})
-    } else {
-      chrome.notifications.create(null, {
-        type: 'basic',
-        iconUrl: 'img/48.png',
-        title: '插件提示',
-        message: unescape(dataTemp.message)
-      })
-    }
-  })
-}
 
 let userInfo = localStorage.getItem('userInfo')
 if (userInfo) {
@@ -65,16 +34,65 @@ document.getElementsByClassName('login')[0].onclick = function () {
   window.open(chrome.extension.getURL('options.html'))
 }
 
+let dataCopy = null
+
 window.onload = function() { 
   // alert("页面加载完成！"); 
   // 获取是否有脚本
   getSchemeData.then((dataTemp) => {
     console.log(dataTemp)
     const scriptBox = document.getElementsByClassName('script-box')[0]
+    if (dataTemp.edition > 1) {
+      chrome.notifications.create(null, {
+        type: 'basic',
+        iconUrl: 'img/48.png',
+        title: '版本过低',
+        message: '有新版本请在弹出页面下载最新插件!'
+      })
+      // console.log(unescape(dataTemp.data))
+      chrome.tabs.create({url: dataTemp.url})
+      return
+    }
     if (dataTemp.err !== 0) {
       scriptBox.classList.add('no-scheme')
     } else {
+      const data = dataTemp['data']
+      dataCopy = data
+      let buttonHtml = ''
+      let ind = 0
+      data.forEach(element => {
+        ind++
+        buttonHtml += `<button data-ind="${ind}">${element.name}</button>`
+      });
+      document.querySelector('.button-box').innerHTML = buttonHtml
       scriptBox.classList.add('scheme')
+      setTimeout(() => {
+        const buttonList = document.getElementsByTagName('button')
+        for (const key in buttonList) {
+          if (Object.hasOwnProperty.call(buttonList, key)) {
+            const element = buttonList[key];
+            element.onclick = function () {
+              
+              let index = this.getAttribute("data-ind")
+              index = parseInt(index)
+              let dataTempCopy = dataCopy[index]
+              switch (dataTempCopy.type) {
+                case 'run': {
+                  chrome.notifications.create(null, {
+                    type: 'basic',
+                    iconUrl: 'img/48.png',
+                    title: '运行方案',
+                    message: '远程方案以载入并运行!'
+                  })
+                  // console.log(unescape(dataTemp.data))
+                  chrome.tabs.executeScript(dataTemp.tabInfo.id, {code: unescape(dataTempCopy.data)})
+                  break
+                }
+              }
+            }
+          }
+        }
+      }, 0);
     }
   })
 }

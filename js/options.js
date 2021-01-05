@@ -1,4 +1,4 @@
-const serverUrl = 'http://154.8.196.163:8005'
+const serverUrl = 'https://going.run/assist'
 // 登录按钮点击
 document.getElementsByClassName('login-button')[0].onclick = function () {
 	const username = document.getElementById('username').value

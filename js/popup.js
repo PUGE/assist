@@ -61,8 +61,8 @@ window.onload = function() {
       let buttonHtml = ''
       let ind = 0
       data.forEach(element => {
-        ind++
         buttonHtml += `<button data-ind="${ind}">${element.name}</button>`
+        ind++
       });
       document.querySelector('.button-box').innerHTML = buttonHtml
       scriptBox.classList.add('scheme')

@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "脚本助手",
-	"version": "1.0.6",
+	"version": "1.0.5",
 	"description": "脚本助手",
 	"icons": {
 		"16": "./img/16.png",
@@ -10,10 +10,17 @@
 	},
 	"browser_action":  {
 		"default_icon": "img/48.png",
-		"default_title": "这是一个示例Chrome插件",
+		"default_title": "made by puge Email: mail@puge.org",
 		"default_popup": "popup.html"
 	},
-	"content_scripts": [],
+	"content_scripts": [
+		{
+      "matches": ["<all_urls>"],
+			"js": ["insert.js"],
+			"all_frames": true,
+			"run_at": "document_end"
+    }
+	],
 	"permissions": [
 		"activeTab",
 		"notifications",
@@ -22,8 +29,7 @@
 	],
 	"homepage_url": "https://github.com/PUGE",
 	"options_page": "options.html",
-	"options_ui":
-	{
+	"options_ui": {
 		"page": "options.html",
 		"chrome_style": true
 	}

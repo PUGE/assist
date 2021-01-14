@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "脚本助手",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "脚本助手",
 	"icons": {
 		"16": "./img/16.png",

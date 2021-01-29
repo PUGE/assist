@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "脚本助手",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "脚本助手",
 	"icons": {
 		"16": "./img/16.png",
@@ -24,7 +24,6 @@
 	"permissions": [
 		"activeTab",
 		"notifications",
-		"webRequest",
 		"https://going.run/*"
 	],
 	"homepage_url": "https://github.com/PUGE",

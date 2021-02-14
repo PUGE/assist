@@ -1,9 +1,9 @@
 const serverUrl = 'https://going.run/assistAll'
 
-let tempData = localStorage.getItem('tempData')
-if (tempData) {
-  tempData = JSON.parse(tempData)
-}
+// let tempData = localStorage.getItem('tempData')
+// if (tempData) {
+//   tempData = JSON.parse(tempData)
+// }
 
 function addScr (data) {
   var script = document.createElement("script");
@@ -15,10 +15,10 @@ function addScr (data) {
 
 const getSchemeData = new Promise((resolve, reject) => {
   const nowTime = Date.parse(new Date())
-  if (tempData && (tempData.time + 10 * 60 * 1000) > nowTime) {
-    console.log('使用缓存返回!', tempData)
-    resolve(tempData.data)
-  }
+  // if (tempData && (tempData.time + 10 * 60 * 1000) > nowTime) {
+  //   console.log('使用缓存返回!', tempData)
+  //   resolve(tempData.data)
+  // }
   const urlStr = window.location.href
   fetch(`${serverUrl}?route=search`, {
     method: 'POST',
@@ -40,10 +40,8 @@ getSchemeData.then((dataTemp) => {
     time: Date.parse(new Date()),
     data: dataTemp
   }))
-  urlStr = urlStr.replace('https://', '')
-  urlStr = urlStr.replace('http://', '')
   dataTemp.forEach(element => {
-    if (urlStr.startsWith(element.url)) {
+    if (new RegExp(element.url).test(urlStr)) {
       addScr(element.data)
       return
     }

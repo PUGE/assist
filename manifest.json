@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "脚本助手",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"description": "脚本助手",
 	"icons": {
 		"16": "./img/16.png",
@@ -28,7 +28,6 @@
 	],
 	"homepage_url": "https://github.com/PUGE",
 	"options_page": "options.html",
-	"update_url": "https://cunchu.site/work/script/updateInfo.xml",
 	"options_ui": {
 		"page": "options.html",
 		"chrome_style": true

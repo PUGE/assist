@@ -2,6 +2,7 @@ const serverUrl = 'https://going.run/assist'
 
 const getSchemeData = new Promise((resolve, reject) => {
   getCurrentTabId((tabInfo) => {
+    console.log(tabInfo)
     fetch(`${serverUrl}?route=search`, {
       method: 'POST',
       body: JSON.stringify({

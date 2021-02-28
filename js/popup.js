@@ -1,3 +1,7 @@
+//在popup.js 中调用 backgourd.js 中的变量和方法，很重要
+var bg = chrome.extension.getBackgroundPage();
+// bg.count = bg.count+1;
+console.log(bg)
 const serverUrl = 'https://going.run/assist'
 
 const getSchemeData = new Promise((resolve, reject) => {

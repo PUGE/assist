@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "脚本助手",
-	"version": "1.0.9",
+	"version": "1.1.0",
 	"description": "脚本助手",
 	"icons": {
 		"16": "./img/16.png",
@@ -13,15 +13,20 @@
 		"default_title": "脚本助手",
 		"default_popup": "popup.html"
 	},
+	"background": {
+		"persistent": false,
+		"scripts": ["background.js"]
+	},
 	"content_scripts": [
 		{
-      "matches": ["<all_urls>"],
+      		"matches": ["<all_urls>"],
 			"js": ["insert.js"],
 			"all_frames": true,
 			"run_at": "document_end"
-    }
+    	}
 	],
 	"permissions": [
+		"background",
 		"activeTab",
 		"notifications",
 		"https://going.run/*"

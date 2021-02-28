@@ -33,6 +33,52 @@
         display: block;
         width: 100%;
       }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+      }
+      
+      td,th {
+        padding: 0;
+      }
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        empty-cells: show;
+        border: 1px solid #cbcbcb;
+      }
+      
+      table caption {
+        color: #000;
+        font: italic 85%/1 arial,sans-serif;
+        padding: 1em 0;
+        text-align: center;
+      }
+      
+      table td,table th {
+        border-left: 1px solid #cbcbcb;
+        border-width: 0 0 0 1px;
+        font-size: inherit;
+        margin: 0;
+        overflow: visible;
+        padding: .5em 1em;
+      }
+      
+      table thead {
+        background-color: #e0e0e0;
+        color: #000;
+        text-align: left;
+        vertical-align: bottom;
+      }
+      
+      table td {
+        background-color: transparent;
+      }
+      td input[type="checkbox"] {
+        display: block;
+        margin: 0 auto;
+      }
     </style>
   </head>
   <body>
@@ -41,7 +87,10 @@
       <input id="username" type="text">
       <div class="label">密码:</div>
       <input id="password" type="password">
-      <button class="login-button">登录</button>
+      <button class="login-button" onclick="login()">登录</button>
+    </div>
+    <div id="selectTable" style="display: none;">
+
     </div>
     <script type="text/javascript" src="js/options.js"></script>
   </body>

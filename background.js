@@ -1,12 +1,20 @@
 var userInfo = null
 var username = localStorage.getItem('owoUsername')
 var password = localStorage.getItem('owoPassword')
+
 var tempData = null
 var openList = {}
+if (localStorage.getItem('owoOpenList')) {
+  openList = JSON.parse(localStorage.getItem('owoOpenList'))
+}
 
 function saveUser (username, password) {
   localStorage.setItem('owoUsername', username)
   localStorage.setItem('owoPassword', password)
+}
+
+function saveOpenList () {
+  localStorage.setItem('owoOpenList', JSON.stringify(openList))
 }
 
 
@@ -23,6 +31,7 @@ if (username && password) {
     })
   }).then((response) => {return response.json();}).then((res) => {
     if (res.err === 0) {
+      alert(res.data)
       userInfo = res.data
     }
   })

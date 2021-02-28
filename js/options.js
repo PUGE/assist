@@ -28,7 +28,7 @@ document.getElementsByClassName('login-button')[0].onclick = function () {
     if (res.err === 0) {
       bg.userInfo = res.data
       bg.saveUser(username, password)
-      // do something
+      location.reload();
     }
   })
 }
@@ -49,6 +49,7 @@ if (bg.userInfo) {
         element.onchange = function (e) {
           const itemId = e.target.getAttribute("key")
           bg.openList[itemId] = !bg.openList[itemId]
+          bg.saveOpenList()
         }
       });
     }, 0);

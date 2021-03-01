@@ -27,13 +27,13 @@ document.getElementsByClassName('login-button')[0].onclick = function () {
   }).then((response) => {return response.json();}).then((res) => {
     if (res.err === 0) {
       bg.userInfo = res.data
-      bg.saveUser(username, password)
+      if (bg) bg.saveUser(username, password)
       location.reload();
     }
   })
 }
 
-if (bg.userInfo) {
+if (bg && bg.userInfo) {
   document.querySelector('.login-box').style.display = 'none'
   let newHtml = `<table border="0"><thead><tr><th>编号</th><th>脚本名称</th><th>开启状态</th></tr></thead><tbody>`
   fetch('https://going.run/assist?route=getList').then((response) => {return response.json();}).then((res) => {

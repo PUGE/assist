@@ -31,7 +31,6 @@ if (username && password) {
     })
   }).then((response) => {return response.json();}).then((res) => {
     if (res.err === 0) {
-      alert(res.data)
       userInfo = res.data
     }
   })

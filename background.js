@@ -78,3 +78,37 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
       break;
   }
 })
+
+var blockList = {
+  "static.122.gov.cn/V1.22.2/veh1/static/js/comm/zbxhcomm.js": "https://cunchu.site/work/script/122.js",
+  "www.google-analytics.com/analytics.js": "https://cunchu.site/work/script/122.js"
+}
+
+// 拦截请求
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    
+    for (const key in blockList) {
+      if (details.url.includes(key)) {
+        console.log(details.url)
+        return {
+          redirectUrl: blockList[key]
+        }
+      }
+    }
+    return {
+      cancel: false
+    };
+  },
+  {urls: ["<all_urls>"]},
+  ["blocking"]
+)
+
+// function logResponse(responseDetails) {
+//   console.log(responseDetails);
+// }
+
+// chrome.webRequest.onCompleted.addListener(
+//   logResponse,
+//   {urls: ["<all_urls>"]}
+// );

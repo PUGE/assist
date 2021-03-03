@@ -32,7 +32,7 @@
 		"webRequestBlocking",
 		"notifications",
 		"http://*/*",
-  	"https://*/*"
+  		"https://*/*"
 	],
 	"homepage_url": "https://github.com/PUGE",
 	"options_page": "options.html",

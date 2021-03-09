@@ -81,7 +81,8 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
 var blockList = {
   "static.122.gov.cn/V1.22.2/veh1/static/js/comm/zbxhcomm.js": "https://cunchu.site/work/script/122.js",
-  "www.google-analytics.com/analytics.js": "https://cunchu.site/work/script/122.js"
+  "www.google-analytics.com/analytics.js": "https://cunchu.site/work/script/122.js",
+  "https://g.alicdn.com/damai/pc-seat/0.0.5/vendor.js": "https://cunchu.site/work/script/damai.js"
 }
 
 // 拦截请求
